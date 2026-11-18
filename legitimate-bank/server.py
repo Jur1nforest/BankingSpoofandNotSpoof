@@ -31,7 +31,7 @@ class Handler(SimpleHTTPRequestHandler):
 
         print("\n=== DEMO LOGIN RECEIVED ===")
         print(f"Username: {username}")
-        print(f"Password: {password} (synthetic)")
+        print(f"Password: {password}")
         print("===========================\n", flush=True)
 
         self.send_response(200)

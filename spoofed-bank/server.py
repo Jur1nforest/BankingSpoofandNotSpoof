@@ -5,6 +5,8 @@ from urllib.parse import parse_qs
 
 class Handler(SimpleHTTPRequestHandler):
     def do_POST(self):
+        print("POST HANDLER EXECUTED", flush=True)
+        print("Request path:", self.path, flush=True)
         if self.path != "/submit":
             self.send_error(404)
             return

