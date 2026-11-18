@@ -1,6 +1,6 @@
 # DemoBank
 
-Two offline pages show how a familiar banking screen can lead to different outcomes in a classroom simulation.
+Two offline pages show how a familiar banking screen can lead to different outcomes in a DHCP Spoof simulation.
 
 - `legitimate-bank/index.html` shows a successful sign-in.
 - `spoofed-bank/index.html` shows a warning and explains how rogue DHCP settings can affect DNS.
