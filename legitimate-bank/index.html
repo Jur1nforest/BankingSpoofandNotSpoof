@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DemoBank | Real Simulation</title>
+  <style>
+    body {
+      max-width: 24rem;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      font: 1rem system-ui, sans-serif;
+    }
+
+    label { display: block; margin-top: 0.75rem; }
+    button { margin-top: 0.75rem; }
+    .success { color: darkgreen; }
+    .warning { color: darkred; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>DemoBank</h1>
+      <p class="label">Real simulation</p>
+    </header>
+
+    <section id="login">
+      <h2>Demo sign-in</h2>
+      <p>Use the fictional account listed in the README.</p>
+      <form id="sign-in" autocomplete="off">
+        <label for="username">Username</label>
+        <input id="username" required>
+        <label for="password">Password</label>
+        <input id="password" type="password" required>
+        <p id="error" class="warning" role="alert" hidden>Incorrect demo username or password.</p>
+        <button type="submit">Sign In</button>
+      </form>
+    </section>
+
+    <section id="result" hidden>
+      <h2 class="success" tabindex="-1">Successfully Logged In!</h2>
+      <p>Welcome to your DemoBank account.</p>
+      <button id="back" type="button">Back to sign-in</button>
+    </section>
+  </main>
+
+  <script>
+    const login = document.querySelector('#login');
+    const result = document.querySelector('#result');
+    const signIn = document.querySelector('#sign-in');
+    const username = document.querySelector('#username');
+    const password = document.querySelector('#password');
+    const error = document.querySelector('#error');
+    const back = document.querySelector('#back');
+
+    signIn.addEventListener('submit', event => {
+      event.preventDefault();
+      const valid = username.value === 'student123' && password.value === 'DemoPass123!';
+      signIn.reset();
+      error.hidden = valid;
+      if (!valid) {
+        username.focus();
+        return;
+      }
+      login.hidden = true;
+      result.hidden = false;
+      result.querySelector('h2').focus();
+    });
+
+    back.addEventListener('click', () => {
+      result.hidden = true;
+      login.hidden = false;
+      username.focus();
+    });
+  </script>
+</body>
+</html>

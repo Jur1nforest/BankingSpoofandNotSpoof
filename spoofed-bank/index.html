@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>DemoBank | Real Simulation</title>
+  <style>
+    body {
+      max-width: 24rem;
+      margin: 3rem auto;
+      padding: 0 1rem;
+      font: 1rem system-ui, sans-serif;
+    }
+
+    label { display: block; margin-top: 0.75rem; }
+    button { margin-top: 0.75rem; }
+    .success { color: darkgreen; }
+    .warning { color: darkred; }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <h1>DemoBank</h1>
+      <p class="label">Spoof simulation</p>
+    </header>
+
+    <section id="login">
+      <h2>Demo sign-in</h2>
+      <p>Use the fictional account listed in the README.</p>
+      <form id="sign-in" autocomplete="off">
+        <label for="username">Username</label>
+        <input id="username" required>
+        <label for="password">Password</label>
+        <input id="password" type="password" required>
+        <p id="error" class="warning" role="alert" hidden>Incorrect demo username or password.</p>
+        <button type="submit">Sign In</button>
+      </form>
+    </section>
+
+    <section id="result" hidden>
+      <h2 class="warning" tabindex="-1">You've Been Spoofed!</h2>
+      <p>Your device was directed to an imitation banking website in this simulation.</p>
+      <p>Demo username: <code id="userSpoof"></code><br>
+        Demo password: <code id="passSpoof"></code></p>
+      <p>A rogue DHCP server can give a client unauthorized DNS settings. That DNS server can resolve a familiar domain to the wrong web server.</p>
+      <button id="back" type="button">Back to sign-in</button>
+    </section>
+  </main>
+
+  <script>
+    const login = document.querySelector('#login');
+    const result = document.querySelector('#result');
+    const signIn = document.querySelector('#sign-in');
+    const username = document.querySelector('#username');
+    const password = document.querySelector('#password');
+    const error = document.querySelector('#error');
+    const back = document.querySelector('#back');
+
+    signIn.addEventListener('submit', event => {
+      event.preventDefault();
+      document.getElementById("userSpoof").innerHTML = username.value;
+      document.getElementById("passSpoof").innerHTML = password.value;
+      signIn.reset();
+      error.hidden = true;
+      login.hidden = true;
+      result.hidden = false;
+      result.querySelector('h2').focus();
+    });
+
+    back.addEventListener('click', () => {
+      result.hidden = true;
+      login.hidden = false;
+      username.focus();
+    });
+  </script>
+</body>
+</html>
