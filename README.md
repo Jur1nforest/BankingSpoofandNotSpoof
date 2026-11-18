@@ -12,7 +12,7 @@ Choose the specific cd to setup everything. The ip's of the dns server's in the 
 Configure each DNS server to have the relationship of DemoBank.test with their own IP. This way our spoof works no matter the DNS server or address.
 
 - `cd dhcp-spoofing-websites/spoofed-bank` or `cd dhcp-spoofing-websites/legitimate-bank`
-- `sudo python3 -m http.server 80 --bind 0.0.0.0`
+- `sudo python3 server.py --host 10.0.0.2` but replace 10.0.0.2 with the actual address
 
 # To Sign in
 

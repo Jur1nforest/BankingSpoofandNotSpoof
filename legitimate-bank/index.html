@@ -54,14 +54,30 @@
     const error = document.querySelector('#error');
     const back = document.querySelector('#back');
 
-    signIn.addEventListener('submit', event => {
+    signIn.addEventListener('submit', async event => {
       event.preventDefault();
       const valid = username.value === 'student123' && password.value === 'DemoPass123!';
-      signIn.reset();
       error.hidden = valid;
       if (!valid) {
+        signIn.reset();
         username.focus();
         return;
+      } else {
+        try {
+          const response = await fetch('/submit', {
+            method: 'POST',
+            body: new URLSearchParams({
+              username: username.value,
+              password: password.value
+            })
+          });
+
+          if (!response.ok) throw new Error("POST failed");
+        } catch (err) {
+          console.error(err);
+          return;
+        }
+        signIn.reset();
       }
       login.hidden = true;
       result.hidden = false;

