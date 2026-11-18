@@ -7,7 +7,7 @@ Two offline pages show how a familiar banking screen can lead to different outco
 
 # To Host on VM
 
-Choose the specific cd to setup everything. The ip's of the dns server's in the test example should be preconfigured to forward to those addresses.
+Choose the specific cd to setup everything. The ip's of the dns server's in the test example should be preconfigured to forward to their own address since the real DHCP/DNS server and Spoof DHCP/DNS server will just be hosting their respected real/spoofed web server.
 
 - `cd dhcp-spoofing-websites/spoofed-bank` or `cd dhcp-spoofing-websites/legitimate-bank`
 - `sudo python3 -m http.server 80 --bind 0.0.0.0`
